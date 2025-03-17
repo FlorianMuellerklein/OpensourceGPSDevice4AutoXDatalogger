@@ -27,7 +27,7 @@ bool oldDeviceConnected = false;
 #define GPS_BAUD 115200
 
 // hardware serial UART2
-HardwareSerial gpsSerial(1); 
+//HardwareSerial gpsSerial(1); 
 // GPS parsing 
 TinyGPSPlus gps; 
 
@@ -97,7 +97,7 @@ void setup() {
   Serial.begin(115200);
 
   // start reading from the gps module
-  gpsSerial.begin(GPS_BAUD, SERIAL_8N1, RXPin, TXPin);
+  Serial2.begin(GPS_BAUD, SERIAL_8N1, RXPin, TXPin);
   Serial.println("GPS Started!");
 
   // name the GPS device DO NOT CHANGE
@@ -139,8 +139,8 @@ void setup() {
 
 
 void loop() {
-  while (gpsSerial.available()) {
-      gps.encode(gpsSerial.read());
+  while (Serial2.available()) {
+      gps.encode(Serial2.read());
   }
 
   if (deviceConnected && gps.location.isUpdated()) {
