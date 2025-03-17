@@ -205,7 +205,7 @@ void loop() {
       pCharacteristic->setValue((uint8_t *)&dataPacket, 32);
       // pCharacteristic->setValue(lat);
       pCharacteristic->notify();
-      delay(50);
+      delay(10);
     }
   }
 
