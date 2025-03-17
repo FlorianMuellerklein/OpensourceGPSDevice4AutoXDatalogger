@@ -33,18 +33,18 @@ TinyGPSPlus gps;
 
 // type defs for packing gps data for ble
 union latBytes {
-  float lat;
-  uint8_t bytes[4];
+  double lat;
+  uint8_t bytes[8];
 } latUnion; 
 
 union longBytes {
-  float lng;
-  uint8_t bytes[4];
+  double lng;
+  uint8_t bytes[8];
 } longUnion; 
 
 union speedBytes {
-  float speed;
-  uint8_t bytes[4];
+  double speed;
+  uint8_t bytes[8];
 } speedUnion; 
 
 union yearBytes {
@@ -139,7 +139,7 @@ void setup() {
 
 
 void loop() {
-  while (gpsSerial.available() > 0) {
+  while (gpsSerial.available()) {
       gps.encode(gpsSerial.read());
   }
 
@@ -166,34 +166,46 @@ void loop() {
     secUnion.sec = gps.time.second();
     centUnion.cent = gps.time.centisecond();
 
-    uint8_t dataPacket[20];
+    uint8_t dataPacket[32];
     dataPacket[0] = latUnion.bytes[0];
     dataPacket[1] = latUnion.bytes[1];
     dataPacket[2] = latUnion.bytes[2];
     dataPacket[3] = latUnion.bytes[3];
-    dataPacket[4] = longUnion.bytes[0];
-    dataPacket[5] = longUnion.bytes[1];
-    dataPacket[6] = longUnion.bytes[2];
-    dataPacket[7] = longUnion.bytes[3];
-    dataPacket[8] = speedUnion.bytes[0];
-    dataPacket[9] = speedUnion.bytes[1];
-    dataPacket[10] = speedUnion.bytes[2];
-    dataPacket[11] = speedUnion.bytes[3];
-    dataPacket[12] = yearUnion.bytes[0];
-    dataPacket[13] = yearUnion.bytes[1];
-    dataPacket[14] = monthUnion.bytes[0];
-    dataPacket[15] = dayUnion.bytes[0];
-    dataPacket[16] = hourUnion.bytes[0];
-    dataPacket[17] = minUnion.bytes[0];
-    dataPacket[18] = secUnion.bytes[0];
-    dataPacket[19] = centUnion.bytes[0];
+    dataPacket[4] = latUnion.bytes[4];
+    dataPacket[5] = latUnion.bytes[5];
+    dataPacket[6] = latUnion.bytes[6];
+    dataPacket[7] = latUnion.bytes[7];
+    dataPacket[8] = longUnion.bytes[0];
+    dataPacket[9] = longUnion.bytes[1];
+    dataPacket[10] = longUnion.bytes[2];
+    dataPacket[11] = longUnion.bytes[3];
+    dataPacket[12] = longUnion.bytes[4];
+    dataPacket[13] = longUnion.bytes[5];
+    dataPacket[14] = longUnion.bytes[6];
+    dataPacket[15] = longUnion.bytes[7];
+    dataPacket[16] = speedUnion.bytes[0];
+    dataPacket[17] = speedUnion.bytes[1];
+    dataPacket[18] = speedUnion.bytes[2];
+    dataPacket[19] = speedUnion.bytes[3];
+    dataPacket[20] = speedUnion.bytes[4];
+    dataPacket[21] = speedUnion.bytes[5];
+    dataPacket[22] = speedUnion.bytes[6];
+    dataPacket[23] = speedUnion.bytes[7];
+    dataPacket[24] = yearUnion.bytes[0];
+    dataPacket[25] = yearUnion.bytes[1];
+    dataPacket[26] = monthUnion.bytes[0];
+    dataPacket[27] = dayUnion.bytes[0];
+    dataPacket[28] = hourUnion.bytes[0];
+    dataPacket[29] = minUnion.bytes[0];
+    dataPacket[30] = secUnion.bytes[0];
+    dataPacket[31] = centUnion.bytes[0];
     
     // notify changed value
     if (deviceConnected) {
-      pCharacteristic->setValue((uint8_t *)&dataPacket, 20);
+      pCharacteristic->setValue((uint8_t *)&dataPacket, 32);
       // pCharacteristic->setValue(lat);
       pCharacteristic->notify();
-      // delay(50);
+      delay(50);
     }
   }
 
