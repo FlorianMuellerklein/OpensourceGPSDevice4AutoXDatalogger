@@ -29,3 +29,29 @@ You can solder the following together or purchase an [expansion board](https://w
 * The GPS module TX pin goes to the RX2 pin on the ESP32
 * If you are using a hardwired battery the hot wire from the battery goes to the VIN pin on the ESP32. And the other goes to the neighboring GND pin. 
 * You'll have to come up with your own case or mounting methods
+
+## Assembled
+
+I assembled my prototypes with a [cheap junction box](https://www.amazon.com/dp/B07WMNQ22D?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) with dimensions 60x37x17mm and some small zip ties. 
+
+1. Drill a few holes in the top for the zip ties and GPS cables. 
+
+![drilled holes](images/holes2drill.jpg)
+
+2. Attach the GPS device with zip ties and thread the cables through. 
+
+![attach GPS](images/attachgpstop.jpg)
+
+![attach GPS bottome](images/attachgpsbottom.jpg)
+
+3. Solder the GPS wires as described above. 
+
+![solder A](images/solderA.jpg)
+
+![solder B](images/solderB.jpg)
+
+4. Assemble and make sure the micro USB cable can be attached
+
+![assembled](images/assembled.jpg)
+
+![ssembled with cable](images/assembledwithcable.jpg)
