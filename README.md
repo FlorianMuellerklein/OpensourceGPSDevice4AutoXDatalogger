@@ -36,22 +36,22 @@ I assembled my prototypes with a [cheap junction box](https://www.amazon.com/dp/
 
 1. Drill a few holes in the top for the zip ties and GPS cables. 
 
-![drilled holes](images/holes2drill.jpg)
+![drilled holes](Images/holes2drill.jpg)
 
 2. Attach the GPS device with zip ties and thread the cables through. 
 
-![attach GPS](images/attachgpstop.jpg)
+![attach GPS](Images/attachgpstop.jpg)
 
-![attach GPS bottome](images/attachgpsbottom.jpg)
+![attach GPS bottome](Images/attachgpsbottom.jpg)
 
 3. Solder the GPS wires as described above. 
 
-![solder A](images/solderA.jpg)
+![solder A](Images/solderA.jpg)
 
-![solder B](images/solderB.jpg)
+![solder B](Images/solderB.jpg)
 
 4. Assemble and make sure the micro USB cable can be attached
 
-![assembled](images/assembled.jpg)
+![assembled](Images/assembled.jpg)
 
-![ssembled with cable](images/assembledwithcable.jpg)
+![ssembled with cable](Images/assembledwithcable.jpg)
