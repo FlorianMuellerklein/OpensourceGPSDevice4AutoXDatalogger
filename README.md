@@ -25,8 +25,8 @@ You can solder the following together or purchase an [expansion board](https://w
 
 * The GPS module gets powered by the 3v3 pin on the ESP32
 * The GPS module ground wire goes to the GND terminal next to 3v3 on the ESP32
-* The GPS module RX pin goes to the TX2 pin on the ESP32
-* The GPS module TX pin goes to the RX2 pin on the ESP32
+* The GPS module RX wire goes to the TX2 pin on the ESP32
+* The GPS module TX wire goes to the RX2 pin on the ESP32
 * If you are using a hardwired battery the hot wire from the battery goes to the VIN pin on the ESP32. And the other goes to the neighboring GND pin. 
 * You'll have to come up with your own case or mounting methods
 
