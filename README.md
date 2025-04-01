@@ -13,9 +13,9 @@ To power the board you have various options. The easiest and likely most readily
 
 ## Software Setup
 
-* Set up Arduino IDE and the USB drivers for the ESP32. Great video [here](https://www.youtube.com/watch?v=CD8VJl27n94)
+* Setup Arduino IDE and the USB drivers for the ESP32. Great video [here](https://www.youtube.com/watch?v=CD8VJl27n94)
 * Install TinyGPSPlus by Mikal Hart from the `Library Manager` tab in Arduino IDE on the left 
-* Select the ESP32 in the `Board` menu in the `Tools` menu and the appropriate USB to Serial port 
+* Select the ESP32 in the `Tools/Board` menu and the appropriate USB to Serial port 
 * Hit the `Upload` (right facing arrow) button after loading or copying and pasting the code in this repo
 * The GPS device will start running everytime the ESP32 is powered on 
 
