@@ -13,13 +13,6 @@
 // Change to give device custom name 
 String deviceName = "DIY GPS A";
 
-BLEServer *pServer = NULL;
-BLECharacteristic *pCharacteristic = NULL;
-BLE2901 *descriptor_2901 = NULL;
-
-bool deviceConnected = false;
-bool oldDeviceConnected = false;
-
 // DO NOT CHANGE
 #define SERVICE_UUID        "ECBB8159-FBA9-4123-AEF0-CA06E1D390D9"
 #define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
@@ -29,12 +22,17 @@ bool oldDeviceConnected = false;
 
 #define GPS_BAUD 115200
 
-// hardware serial UART2
-//HardwareSerial gpsSerial(1); 
+BLEServer *pServer = NULL;
+BLECharacteristic *pCharacteristic = NULL;
+BLE2901 *descriptor_2901 = NULL;
+
+bool deviceConnected = false;
+bool oldDeviceConnected = false;
+
 // GPS parsing 
 TinyGPSPlus gps; 
 
-// type defs for packing gps data for ble
+// type defs for packing gps data into bytes for ble
 union latBytes {
   double lat;
   uint8_t bytes[8];
@@ -103,7 +101,6 @@ void setup() {
   Serial2.begin(GPS_BAUD, SERIAL_8N1, RXPin, TXPin);
   Serial.println("GPS Started!");
 
-
   BLEDevice::init(deviceName);
 
   // Create the BLE Server
@@ -147,20 +144,10 @@ void loop() {
   }
 
   if (deviceConnected && gps.location.isUpdated()) {
-    // Serial.print("LAT: ");  Serial.println(gps.location.lat(), 6);
-    // Serial.print("LONG: "); Serial.println(gps.location.lng(), 6);
-    // Serial.print("SPD: ");  Serial.println(gps.speed.mps());
-    // Serial.print("hour: "); Serial.println(gps.time.hour());
-    // Serial.print("min: "); Serial.println(gps.time.minute());
-    // Serial.print("sec: "); Serial.println(gps.time.second());
-    // Serial.print("nano: "); Serial.println(gps.time.centisecond()); // hundredth of a second
-    // Serial.print("year: "); Serial.println(gps.date.year());
-    // Serial.print("month: "); Serial.println(gps.date.month());
-    // Serial.print("date: "); Serial.println(gps.date.day());
-  
-    latUnion.lat = gps.location.lat(); // 32.79075; // 
-    longUnion.lng = gps.location.lng(); // -96.83435; // 
-    speedUnion.speed = gps.speed.mps(); // 12.3; // 
+    // parse GPS data
+    latUnion.lat = gps.location.lat();
+    longUnion.lng = gps.location.lng();
+    speedUnion.speed = gps.speed.mps();
     yearUnion.year = gps.date.year();
     monthUnion.month = gps.date.month();
     dayUnion.day = gps.date.day();
@@ -169,6 +156,7 @@ void loop() {
     secUnion.sec = gps.time.second();
     centUnion.cent = gps.time.centisecond();
 
+    // create data packet for BLE transfer
     uint8_t dataPacket[32];
     dataPacket[0] = latUnion.bytes[0];
     dataPacket[1] = latUnion.bytes[1];
@@ -206,7 +194,6 @@ void loop() {
     // notify changed value
     if (deviceConnected) {
       pCharacteristic->setValue((uint8_t *)&dataPacket, 32);
-      // pCharacteristic->setValue(lat);
       pCharacteristic->notify();
       delay(25);
     }
@@ -222,9 +209,6 @@ void loop() {
 
   // connecting
   if (deviceConnected && !oldDeviceConnected) {
-    // do stuff here on connecting
     oldDeviceConnected = deviceConnected;
   }
-
-  // delay(100);
 }
