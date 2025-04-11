@@ -11,7 +11,7 @@
 #include <TinyGPSPlus.h>
 
 // Change to give device custom name 
-String deviceName = "DIY GPS A";
+String deviceName = "DIY GPS";
 
 // DO NOT CHANGE
 #define SERVICE_UUID        "ECBB8159-FBA9-4123-AEF0-CA06E1D390D9"
