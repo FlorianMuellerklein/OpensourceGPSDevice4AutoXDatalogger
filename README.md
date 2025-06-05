@@ -1,6 +1,6 @@
 # Opensource 10+hz GPS for Autocross Datalogger
 
-External GPS devices for motorsports can be a little pricey so this opensource DIY device is a great alternative for someone trying to save some money. I'm having a hard time finding good external devices to use with the  Autocross Datalogger iOS app that I'm developing so the next best option is allow others to build their own if they are so inclined. 
+External GPS devices for motorsports can be a little pricey so this opensource DIY device is a great alternative for someone trying to save some money. I'm having a hard time finding good external devices to use with the [Autocross Datalogger iOS app](https://apps.apple.com/us/app/autox-data-logger/id6742694051) that I'm developing so the next best option is allow others to build their own if they are so inclined. 
 
 ## Parts Used 
 
