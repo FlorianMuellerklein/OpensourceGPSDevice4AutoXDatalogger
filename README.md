@@ -2,6 +2,8 @@
 
 External GPS devices for motorsports can be a little pricey so this opensource DIY device is a great alternative for someone trying to save some money. I'm having a hard time finding good external devices to use with the [Autocross Datalogger iOS app](https://apps.apple.com/us/app/autox-data-logger/id6742694051) that I'm developing so the next best option is allow others to build their own if they are so inclined. 
 
+This is meant to be the most simple, cheap, and bare bones solution to get a DIY GPS device. A more feature rich solution that includes an IMU and 3d printed case can be found [here](https://github.com/anchit92/ESP32-RaceBox-mini-Emulator/).
+
 ## Parts Used 
 
 Below I'll list the parts that I've currently tested to work with this system. More to come as I try others! 
